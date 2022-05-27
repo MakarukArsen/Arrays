@@ -59,6 +59,5 @@ function getPairsMarks(pairsWithThemes){
     }
     return result;
 }
-// const pairsMarks = getPairsMarks(getPairsThemes([...pairs], themes));
-const pairsMarks = getPairsMarks([...pairsThemes]);
+const pairsMarks = getPairsMarks(JSON.parse(JSON.stringify(pairsThemes)));
 console.log(pairsMarks);
