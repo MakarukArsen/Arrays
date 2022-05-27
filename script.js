@@ -2,7 +2,6 @@ const students = ["Олександр", "Ігор", "Олена", "Іра", "О�
 const themes = ["Диференційне рівняння", "Теорія автоматів", "Алгоритми і структури даних"];
 const marks = [4, 5, 5, 3, 4, 5];
 
-
 // 1. Розділіть студентів на пари(хлопець + дівчина) для работи над проєктом. У вас повинен вийти вкладений масив з парами студентів: [["Олександр", "Олена"], [..], [...]];
 function getPairs(arrStudents) {
     let result = [];
@@ -32,28 +31,34 @@ function getPairsThemes(pairsArr, pairThemes){
     }
     return pairsArr;
 }
-const pairsThemes = getPairsThemes(pairs, themes);
-console.log(pairsThemes);
-// // 3. Зіставте оцінки(marks) зі студентом(students)
-// function getStudentsMarks(students, marks){
-//     for(let i = 0; i < students.length; i++){
-//         students[i] = students[i].split(",");
-//         students[i].push(marks[i])
-//     }
-//     return studentsWithMarks = students;
-// }
-// const studentsMarks = getStudentsMarks(students, marks);
-// console.log(studentsMarks);
+const pairsThemes = getPairsThemes([...pairs], themes);
 
-// // 4. Поставте кожній парі випадкову оцінку(від 1 до 5) за проєкт(тут функція буде нечистою, але не повинна мутувати массив)
-// function getRandomMark(min, max){
-//     const randomNumber = Math.floor(Math.random() * (min + max) - min);
-//     return randomNumber;
-// }
-// const randomMark = getRandomMark(1, 5);
-// function getPairsMarks(pairsWithThemes, mark){
-//     let result;
-//     return result;
-// }
-// const pairsMarks = getPairsMarks(pairsThemes, randomMark);
-// console.log(pairsMarks)
+console.log(pairsThemes);
+
+// 3. Зіставте оцінки(marks) зі студентом(students)
+function getStudentsMarks(students, marks){
+    for(let i = 0; i < students.length; i++){
+        students[i] = students[i].split(",");
+        students[i].push(marks[i])
+    }
+    return studentsWithMarks = students;
+}
+const studentsMarks = getStudentsMarks(students, marks);
+console.log(studentsMarks);
+
+// 4. Поставте кожній парі випадкову оцінку(від 1 до 5) за проєкт(тут функція буде нечистою, але не повинна мутувати массив)
+function getRandomMark(min, max){
+    const randomNumber = Math.floor(Math.random() * (++max - min) + min);
+    return randomNumber;
+}
+
+function getPairsMarks(pairsWithThemes){
+    let result = pairsWithThemes;
+    for (let i = 0; i < result.length; i++){
+        result[i].push(getRandomMark(1, 5));
+    }
+    return result;
+}
+// const pairsMarks = getPairsMarks(getPairsThemes([...pairs], themes));
+const pairsMarks = getPairsMarks([...pairsThemes]);
+console.log(pairsMarks);
