@@ -4,9 +4,9 @@ const marks = [4, 5, 5, 3, 4, 5];
 
 // 1. Розділіть студентів на пари(хлопець + дівчина) для работи над проєктом. У вас повинен вийти вкладений масив з парами студентів: [["Олександр", "Олена"], [..], [...]];
 function getPairs(arrStudents) {
-    let result = [];
-    let girls = [];
-    let boys = [];
+    const result = [];
+    const girls = [];
+    const boys = [];
     for (let i = 0; i < arrStudents.length; i++){
         if (arrStudents[i].endsWith("а") || arrStudents[i].endsWith("я")){
             girls.push(arrStudents[i]);
@@ -25,8 +25,7 @@ console.log(pairs);
 // 2. Зіставте пари з попереднього завдання та теми проєктів, над якими студенти будуть працювати.
 function getPairsThemes(pairsArr, pairThemes){
     for (let i = 0; i < pairsArr.length; i++){
-        pairsArr[i] = pairsArr[i].join(" і ");
-        pairsArr[i] = pairsArr[i].split(",");
+        pairsArr[i] = pairsArr[i].join(" і ").split(",");
         pairsArr[i].push(pairThemes[i]);
     }
     return pairsArr;
@@ -37,11 +36,12 @@ console.log(pairsThemes);
 
 // 3. Зіставте оцінки(marks) зі студентом(students)
 function getStudentsMarks(students, marks){
-    for(let i = 0; i < students.length; i++){
-        students[i] = students[i].split(",");
-        students[i].push(marks[i])
+    const studentsCopy = students.slice();
+    for(let i = 0; i < studentsCopy.length; i++){
+        studentsCopy[i] = studentsCopy[i].split(",");
+        studentsCopy[i].push(marks[i])
     }
-    return studentsWithMarks = students;
+    return studentsWithMarks = studentsCopy;
 }
 const studentsMarks = getStudentsMarks(students, marks);
 console.log(studentsMarks);
@@ -53,7 +53,7 @@ function getRandomMark(min, max){
 }
 
 function getPairsMarks(pairsWithThemes){
-    let result = pairsWithThemes;
+    const result = pairsWithThemes;
     for (let i = 0; i < result.length; i++){
         result[i].push(getRandomMark(1, 5));
     }
